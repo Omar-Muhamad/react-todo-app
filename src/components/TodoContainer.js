@@ -59,8 +59,6 @@ const TodoContainer = () => {
     
   };
 
-  console.log(state)
-
   return (
     <div className="todoContainer">
       <Navbar />
