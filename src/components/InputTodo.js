@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
 
-const InputTodo = (props) =>{
+const InputTodo = (props) => {
+  const { addTodoProps } = props;
   const [state, setState] = useState({
-    title: ""
+    title: '',
   });
 
-  const onChange = e => {
+  const onChange = (e) => {
     setState({
       [e.target.name]: e.target.value,
-    })
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addTodoProps(state.title);
+    addTodoProps(state.title);
     setState({
-      title: ""
+      title: '',
     });
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
-      <input 
-      type="text"
-      placeholder="Add Todo..."
-      value={state.title}
-      name="title"
-      onChange={onChange}
-      required
+      <input
+        type="text"
+        placeholder="Add Todo..."
+        value={state.title}
+        name="title"
+        onChange={onChange}
+        required
       />
-      <button>Submit</button>
+      <button type="submit">Submit</button>
     </form>
-  )
+  );
+};
+
+InputTodo.propTypes = {
+  addTodoProps: propTypes.func.isRequired,
 };
 
 export default InputTodo;
